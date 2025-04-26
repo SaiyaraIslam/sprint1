@@ -1,0 +1,29 @@
+<!DOCTYPE html> <!-- html doctype -->
+<html lang="en">
+<head>
+  <title>Customers</title> <!-- page title -->
+  <!--linking BS styling & css styling-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="container py-4"> <!--BS styling with padding-->
+  <h1 class="mb-4"> Registered Customers</h1>
+  <a href="/" class="btn btn-secondary mb-3"> Back</a>
+  <table class="table table-hover"> <!--table display-->
+    <thead class="table-primary"> <!--table header row-->
+      <tr>
+        <th>Name</th><th>Email</th> <!--column for name & email-->
+      </tr>
+    </thead>
+    <tbody>
+      <% customers.forEach(c => { %>
+        <tr>
+          <td><%= c.firstname %> <%= c.lastname %></td> <!--displaying first & last name-->
+          <td><%= c.email %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

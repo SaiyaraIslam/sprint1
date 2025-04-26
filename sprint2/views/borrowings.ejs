@@ -1,0 +1,49 @@
+<!DOCTYPE html> <!-- html doctype -->
+<html lang="en">
+<head>
+  <title>Borrowing Records</title> <!-- page title -->
+   <!--linking BS styling & css styling-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="container py-4">  <!--BS styling with padding -->
+  <h1 class="mb-4">Borrowing Records</h1>
+  <a href="/" class="btn btn-secondary mb-3"> Back</a>  <!--button to go back home-->
+  <table class="table table-bordered">  <!--table for record-->
+    <thead class="table-dark">  <!--table header section-->
+      <tr>
+        <th>Book</th>
+        <th>Customer</th>
+        <th>Borrowed</th>
+        <th>Returned</th>
+        <th>Late Fee</th>
+      </tr>
+    </thead>
+    <tbody>  <!--table body-->
+      <% records.forEach(r => { %>
+        <tr>
+          <td><%= r.title %></td>
+          <td><%= r.firstname %> <%= r.lastname %></td>
+          <td><%= new Date(r.borrowdate).toLocaleDateString() %></td>
+          <td><%= r.returndate ? new Date(r.returndate).toLocaleDateString() : '—' %></td>
+          <td class="text-end">  <!--used chatgpt suggestions below because orginally i was missing the else loop resulting in an error message, so troubleshooted using chatgpt-->
+            <% if (typeof r.late_fee === 'number' && r.late_fee > 0) { %>
+              <span class="badge bg-danger">
+                $<%= r.late_fee.toFixed(2) %>
+              </span>
+            <% } else { %>
+              <span class="text-muted">
+                $0.00
+              </span>
+            <% } %>
+          </td>
+          
+          </td>
+          
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

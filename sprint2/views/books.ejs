@@ -1,0 +1,32 @@
+<!DOCTYPE html> <!-- html doctype -->
+<html lang="en">
+<head>
+  <title>Books</title> <!-- page title -->
+    <!--linking BS styling & css styling-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+
+</head>
+<body class="container py-4"> <!--BS styling with padding-->
+  <h1 class="mb-4">Library Books</h1> <!--header title for books-->
+  <a href="/" class="btn btn-secondary mb-3">Back</a> <!--return home button-->
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark"> <!--table header-->
+      <tr>
+        <th>Title</th><th>Author</th><th>Genre</th><th>Status</th>
+      </tr>
+    </thead> <!--content generated from the backend-->
+    <tbody>
+      <% books.forEach(book => { %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.genre %></td>
+          <td><%= book.status %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

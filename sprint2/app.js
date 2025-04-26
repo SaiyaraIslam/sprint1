@@ -99,7 +99,7 @@ app.post('/return', async (req, res) => {
   }
 });
 
-// borrowing records handle
+// borrowing records handling
 app.get('/borrowings', async (req, res) => {
   try {
     const response = await fetch('http://127.0.0.1:5000/api/borrowings');

@@ -1,11 +1,25 @@
-from flask import Flask, request, jsonify # importing flask
-import mysql.connector # importing sql
-import bcrypt 
-from creds import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME # importing creds.py
-from datetime import datetime, timezone # importing datetime
+from flask import Flask, request, jsonify
+from flask_cors import CORS  
+import mysql.connector
+import bcrypt
+from creds import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
+from datetime import datetime, timezone
 
-app = Flask(__name__)  # starting the flask app
-app.config["DEBUG"] = True  # debugging if runs into error
+app = Flask(__name__)
+app.config["DEBUG"] = True
+
+# Add this line to allow requests from Node frontend
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+@app.before_request
+def log_request():
+    print(f"📥 {request.method} {request.url} | Origin: {request.headers.get('Origin')}")
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,OPTIONS')
+    return response
+
 
 # defining the create connection to the sql db
 def create_connection():
